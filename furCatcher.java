@@ -5,12 +5,14 @@ public class furCatcher
 	private Rectangle f;
 	private Rectangle j;
 	private Rectangle k;
+	public final int defaultHeight = 50;
+	public final int defaultWidth = 100;
 	
 	public furCatcher(){
-		d = new Rectangle(0, 400, 100, 50);
-		f = new Rectangle(100, 400, 100, 50);
-		j = new Rectangle(200, 400, 100, 50);
-		k = new Rectangle(300, 400, 100, 50);
+		d = new Rectangle(0, 400, defaultWidth, defaultHeight);
+		f = new Rectangle(100, 400, defaultWidth, defaultHeight);
+		j = new Rectangle(200, 400, defaultWidth, defaultHeight);
+		k = new Rectangle(300, 400, defaultWidth, defaultHeight);
 		
 		d.draw();
 		f.draw();
@@ -38,7 +40,42 @@ public class furCatcher
 		}
 		return false;
 	}
-	
+	/*
+	public static int defaultHeight(){
+		return defaultHeight;
+	}
+	public static int defaultWidth(){
+		return defaultWidth;
+	}
+	*/
+	public int catcherHeight(){
+		return d.getHeight();
+	}
+	public int catcherWidth(){
+		return d.getWidth();
+	}
+	public int catcherX(String catcher){
+		if(catcher.equals("d")){
+			return d.getX();
+		} else if(catcher.equals("f")){
+			return k.getX();
+		} else if(catcher.equals("j")){
+			return j.getX();
+		} else if(catcher.equals("k")){
+			return k.getX();
+		}
+	}
+	public int catcherY(String catcher){
+		if(catcher.equals("d")){
+			return d.getY();
+		} else if(catcher.equals("f")){
+			return k.getY();
+		} else if(catcher.equals("j")){
+			return j.getY();
+		} else if(catcher.equals("k")){
+			return k.getY();
+		}
+	}
 	// public void highlight(String catcher){
 		// switch(catcher){
 			// case "d":
