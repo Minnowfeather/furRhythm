@@ -49,7 +49,7 @@ public class furCatcher
 	}
 	*/
 	
-	public static int catcherX(String catcher){
+	public int catcherX(String catcher){
 		if(catcher.equals("d")){
 			return d.getX();
 		} else if(catcher.equals("f")){
@@ -59,8 +59,9 @@ public class furCatcher
 		} else if(catcher.equals("k")){
 			return k.getX();
 		}
-	}
-	public static int catcherY(String catcher){
+		return 0;
+	}	
+	public int catcherY(String catcher){
 		if(catcher.equals("d")){
 			return d.getY();
 		} else if(catcher.equals("f")){
@@ -70,6 +71,7 @@ public class furCatcher
 		} else if(catcher.equals("k")){
 			return k.getY();
 		}
+		return 0;
 	}
 	// public void highlight(String catcher){
 		// switch(catcher){
