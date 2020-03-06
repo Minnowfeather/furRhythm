@@ -5,7 +5,7 @@ public class furNote
 	private Rectangle hitbox;
 	
 	public furNote(int x){
-		hitbox = new Rectangle(x, -20, 40, 20);
+		hitbox = new Rectangle(x, -20, furCatcher.defaultWidth, 20);
 		hitbox.draw();
 	}
 	
