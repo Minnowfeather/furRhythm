@@ -22,17 +22,16 @@ public class starter implements InputControl, InputKeyControl
 			scoreCounter = 0;
 			Text scoreCounterText = new Text(0,0, ""+scoreCounter);
 			scoreCounterText.draw();
-			
-			furNote n = new furNote(50);
-			currentNotes.add(n);
 			int timeCounter = 0;
+			
+			// update loop
 			while(true){
 				timeCounter += 1;
 				for(int i = 0; i < currentNotes.size(); i++){
 					currentNotes.get(i).move(0, 2);
 				}
 				if(timeCounter%20 == 0){
-					currentNotes.add(new furNote(100*(int)(Math.random()*4)));
+					currentNotes.add(new furNote(keys[(int)(Math.random()*keys.length)]));
 				}
 				Canvas.pause(20);
 				scoreCounterText.setText(""+scoreCounter);
