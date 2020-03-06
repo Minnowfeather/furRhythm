@@ -48,13 +48,8 @@ public class furCatcher
 		return defaultWidth;
 	}
 	*/
-	public int catcherHeight(){
-		return d.getHeight();
-	}
-	public int catcherWidth(){
-		return d.getWidth();
-	}
-	public int catcherX(String catcher){
+	
+	public static int catcherX(String catcher){
 		if(catcher.equals("d")){
 			return d.getX();
 		} else if(catcher.equals("f")){
@@ -65,7 +60,7 @@ public class furCatcher
 			return k.getX();
 		}
 	}
-	public int catcherY(String catcher){
+	public static int catcherY(String catcher){
 		if(catcher.equals("d")){
 			return d.getY();
 		} else if(catcher.equals("f")){
