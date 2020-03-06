@@ -16,6 +16,10 @@ public class starter implements InputControl, InputKeyControl
 			// please leave following line alone, necessary for keyboard input
 			KeyController kC = new KeyController(Canvas.getInstance(),new starter());
 			
+			EasyReader speedReader = new EasyReader("scrollspeed.txt");
+			EasyReader rateReader = new EasyReader("spawnrate.txt");
+			int speed = speedReader.readInt();
+			int rate = rateReader.readInt();
 			keys = new String[]{"d", "f", "j", "k"};
 			f = new furCatcher();
 			currentNotes = new ArrayList<furNote>();
@@ -30,10 +34,10 @@ public class starter implements InputControl, InputKeyControl
 				for(int i = 0; i < currentNotes.size(); i++){
 					currentNotes.get(i).move(0, 2);
 				}
-				if(timeCounter%20 == 0){
-					currentNotes.add(new furNote(keys[(int)(Math.random()*keys.length)]));
+				if(timeCounter%rate == 0){
+					currentNotes.add(new furNote(keys[(int)(Math.random()*keys.length)], f));
 				}
-				Canvas.pause(20);
+				Canvas.pause(speed);
 				scoreCounterText.setText(""+scoreCounter);
 			}
 		}
