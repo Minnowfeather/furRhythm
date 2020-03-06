@@ -8,6 +8,10 @@ public class furNote
 		hitbox = new Rectangle(x, -20, furCatcher.defaultWidth, 20);
 		hitbox.draw();
 	}
+	public furNote(String catcher){
+		hitbox = new Rectangle(furCatcher.catcherX(catcher), -20, furCatcher.defaultWidth, 20);
+		hitbox.draw();
+	}
 	
 	public void move(int dx, int dy){
 		hitbox.translate(dx, dy);
