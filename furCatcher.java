@@ -53,7 +53,7 @@ public class furCatcher
 		if(catcher.equals("d")){
 			return d.getX();
 		} else if(catcher.equals("f")){
-			return k.getX();
+			return f.getX();
 		} else if(catcher.equals("j")){
 			return j.getX();
 		} else if(catcher.equals("k")){
@@ -65,7 +65,7 @@ public class furCatcher
 		if(catcher.equals("d")){
 			return d.getY();
 		} else if(catcher.equals("f")){
-			return k.getY();
+			return f.getY();
 		} else if(catcher.equals("j")){
 			return j.getY();
 		} else if(catcher.equals("k")){
