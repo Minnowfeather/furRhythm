@@ -5,15 +5,20 @@ public class furCatcher
 	private Rectangle f;
 	private Rectangle j;
 	private Rectangle k;
-	public final int defaultHeight = 50;
+	private Rectangle hitbar;
+	public final int defaultHeight = 100;
 	public final int defaultWidth = 100;
 	
 	public furCatcher(){
+		
+		hitbar = new Rectangle(0, 440, 400, 10);
 		d = new Rectangle(0, 400, defaultWidth, defaultHeight);
 		f = new Rectangle(100, 400, defaultWidth, defaultHeight);
 		j = new Rectangle(200, 400, defaultWidth, defaultHeight);
 		k = new Rectangle(300, 400, defaultWidth, defaultHeight);
 		
+		hitbar.setColor(Color.RED);
+		hitbar.draw();
 		d.draw();
 		f.draw();
 		j.draw();
@@ -73,19 +78,35 @@ public class furCatcher
 		}
 		return 0;
 	}
-	// public void highlight(String catcher){
-		// switch(catcher){
-			// case "d":
-				// break;
-			// case "f":
-				// break;
-			// case "j":
-				// break;
-			// case "k":
-				// break;
-			// default:
-				
-		// }
-			
+	public void highlight(String catcher){
+		if(catcher.equals("d")){
+			d.setColor(Color.MAGENTA);
+			d.fill();
+		} else if(catcher.equals("f")){
+			f.setColor(Color.MAGENTA);
+			f.fill();
+		} else if(catcher.equals("j")){
+			j.setColor(Color.MAGENTA);
+			j.fill();
+		} else if(catcher.equals("k")){
+			k.setColor(Color.MAGENTA);
+			k.fill();
+		}
+	}
+	public void unHighlight(String catcher){
+		if(catcher.equals("d")){
+			d.setColor(Color.BLACK);
+			d.draw();
+		} else if(catcher.equals("f")){
+			f.setColor(Color.BLACK);
+			f.draw();
+		} else if(catcher.equals("j")){
+			j.setColor(Color.BLACK);
+			j.draw();
+		} else if(catcher.equals("k")){
+			k.setColor(Color.BLACK);
+			k.draw();
+		}
+	}	
 	
 }

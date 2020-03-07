@@ -10,22 +10,26 @@ public class KeyController{
     public KeyController(Canvas c, InputKeyControl iC){
         this.c = c;
         this.iC = iC;
-        System.out.println("Key Started");
+        // System.out.println("Key Started");
         handleKey();
     }
 
     private void handleKey(){
         this.c.frame.addKeyListener(new KeyListener() {
             @Override
-			public void keyPressed(KeyEvent e) {
-				char cc = e.getKeyChar();
-				String c = Character.toString(cc);
+            public void keyPressed(KeyEvent e) {
+                char cc = e.getKeyChar();
+                String c = Character.toString(cc);
                 iC.keyPress(c);
             }
-
-			
-			public void keyReleased(KeyEvent e) {}
-			public void keyTyped(KeyEvent e) {}
+            
+            public void keyReleased(KeyEvent e) {
+                char cc = e.getKeyChar();
+                String c = Character.toString(cc);
+                iC.keyRelease(c);
+            }
+            
+            public void keyTyped(KeyEvent e) {}
             
         });
 

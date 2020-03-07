@@ -6,7 +6,7 @@ public class starter implements InputControl, InputKeyControl
 		static furCatcher f;
 		static ArrayList<furNote> currentNotes;
 		static int scoreCounter;
-		
+				
         public static void main(String args[])
         {
 		
@@ -53,7 +53,7 @@ public class starter implements InputControl, InputKeyControl
 			
 			for(String key:keys){
 				if(s.equals(key)){
-					// f.highlight(key);
+					f.highlight(key);
 					for(int i = 0; i < currentNotes.size(); i++){
 						if(f.contains(key, currentNotes.get(i))){
 							currentNotes.get(i).destroy();
@@ -64,11 +64,11 @@ public class starter implements InputControl, InputKeyControl
 				}
 			}
 					
-			
 			char done = (char)10;
 			String temp = Character.toString(done);
-			
-			
-			
+		}
+		
+		public void keyRelease(String s){
+			f.unHighlight(s);
 		}
 }
