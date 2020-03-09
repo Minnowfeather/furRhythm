@@ -25,5 +25,11 @@ public class furNote
 	public void destroy(){
 		move(600,600);
 	}
+	public boolean isOutOfBounds(){
+		if(hitbox.getY() > 600){
+			return true;
+		}
+		return false;
+	}
 	
 }

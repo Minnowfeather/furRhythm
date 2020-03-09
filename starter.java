@@ -39,6 +39,14 @@ public class starter implements InputControl, InputKeyControl
 				}
 				Canvas.pause(speed);
 				scoreCounterText.setText(""+scoreCounter);
+				for(int i = 0; i < currentNotes.size(); i++){
+					if(currentNotes.get(i).isOutOfBounds()){
+						currentNotes.get(i).destroy();
+						furNote n = currentNotes.remove(i);
+						n = null;
+						scoreCounter--;
+					}
+				}
 			}
 		}
 		
@@ -46,7 +54,6 @@ public class starter implements InputControl, InputKeyControl
 			// and/or here
 	
 		}
-		
 		public void keyPress(String s)
 		{
 			// temp holds the enter character
@@ -57,7 +64,8 @@ public class starter implements InputControl, InputKeyControl
 					for(int i = 0; i < currentNotes.size(); i++){
 						if(f.contains(key, currentNotes.get(i))){
 							currentNotes.get(i).destroy();
-							currentNotes.remove(i);
+							furNote n = currentNotes.remove(i);
+							n = null;
 							scoreCounter++;
 						}
 					}
