@@ -27,6 +27,8 @@ public class starter implements InputControl, InputKeyControl
 			Text scoreCounterText = new Text(0,0, ""+scoreCounter);
 			scoreCounterText.draw();
 			int timeCounter = 0;
+			furHealthBar healthBar = new furHealthBar(100);
+
 			
 			// update loop
 			while(true){
@@ -45,8 +47,10 @@ public class starter implements InputControl, InputKeyControl
 						furNote n = currentNotes.remove(i);
 						n = null;
 						scoreCounter--;
+						healthBar.setPercent(healthBar.getPercent()-1);
 					}
 				}
+				healthBar.updateBar();
 			}
 		}
 		

@@ -13,11 +13,11 @@ public class furNote
 		hitbox.draw();
 	}
 	
-	public void move(int dx, int dy){
+	public void move(double dx, double dy){
 		hitbox.translate(dx, dy);
 	}
-	public void moveTo(int x, int y){
-		// ToDO: implement
+	public void moveTo(double x, double y){
+		hitbox.translate(x-hitbox.getX(), y-hitbox.getY());
 	}
 	public Rectangle getHitbox(){
 		return hitbox;
