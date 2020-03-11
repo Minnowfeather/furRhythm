@@ -6,7 +6,8 @@ public class starter implements InputControl, InputKeyControl
 		static furCatcher f;
 		static ArrayList<furNote> currentNotes;
 		static int scoreCounter;
-				
+		static boolean gameRunning;
+		static furHealthBar healthBar;
         public static void main(String args[])
         {
 		
@@ -20,18 +21,26 @@ public class starter implements InputControl, InputKeyControl
 			EasyReader rateReader = new EasyReader("spawnrate.txt");
 			int speed = speedReader.readInt();
 			int rate = rateReader.readInt();
-			keys = new String[]{"d", "f", "j", "k"};
-			f = new furCatcher();
-			currentNotes = new ArrayList<furNote>();
-			scoreCounter = 0;
-			Text scoreCounterText = new Text(0,0, ""+scoreCounter);
-			scoreCounterText.draw();
-			int timeCounter = 0;
-			furHealthBar healthBar = new furHealthBar(100);
 
+
+			gameRunning = true;
+
+			keys = new String[]{"d", "f", "j", "k"};
+
+			f = new furCatcher();
+
+			healthBar = new furHealthBar(100);
+
+			currentNotes = new ArrayList<furNote>();
+
+			scoreCounter = 0;
+			Text scoreCounterText = new Text(500,0, ""+scoreCounter);
+			scoreCounterText.draw();
+
+			int timeCounter = 0;
 			
 			// update loop
-			while(true){
+			while(gameRunning){
 				timeCounter += 1;
 				for(int i = 0; i < currentNotes.size(); i++){
 					currentNotes.get(i).move(0, 2);
@@ -51,7 +60,17 @@ public class starter implements InputControl, InputKeyControl
 					}
 				}
 				healthBar.updateBar();
+				if(healthBar.getPercent() <= 0){
+					gameRunning = false;
+				}
+				
 			}
+			Rectangle clear = new Rectangle(0,0,600,600);
+			clear.setColor(Color.WHITE);
+			clear.fill();
+			Text end = new Text(250,270,"You died!");
+			end.grow(2,2);
+			end.draw();
 		}
 		
 		public void onMouseClick(double x, double y){
