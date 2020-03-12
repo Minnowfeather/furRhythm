@@ -107,6 +107,14 @@ public class furCatcher
 			k.setColor(Color.BLACK);
 			k.draw();
 		}
-	}	
+	}
+
+	public void destroy(){
+		d.translate(600, 600);
+		f.translate(600, 600);
+		j.translate(600, 600);
+		k.translate(600, 600);
+		hitbar.translate(600, 600);
+	}
 	
 }

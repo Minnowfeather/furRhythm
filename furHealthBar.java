@@ -24,4 +24,9 @@ public class furHealthBar
 	public int getPercent(){
 		return percent;
 	}
+
+	public void destroy(){
+		outline.translate(600,600);
+		bar.translate(600,600);
+	}
 }

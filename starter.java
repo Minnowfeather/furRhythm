@@ -56,7 +56,7 @@ public class starter implements InputControl, InputKeyControl
 						furNote n = currentNotes.remove(i);
 						n = null;
 						scoreCounter--;
-						healthBar.setPercent(healthBar.getPercent()-1);
+						healthBar.setPercent(healthBar.getPercent()-2);
 					}
 				}
 				healthBar.updateBar();
@@ -68,6 +68,24 @@ public class starter implements InputControl, InputKeyControl
 			Rectangle clear = new Rectangle(0,0,600,600);
 			clear.setColor(Color.WHITE);
 			clear.fill();
+
+			// Remove all current notes
+			for(int i = 0; i < currentNotes.size(); i++){
+				currentNotes.get(i).destroy();
+				furNote n = currentNotes.remove(i);
+				n = null;
+			}
+
+			// GUI destroy
+			/*
+			healthBar.destroy();
+			healthBar = null;
+			f.destroy();
+			f = null;
+			scoreCounterText.translate(600,600);
+			scoreCounterText = null;
+			*/
+
 			Text end = new Text(250,270,"You died!");
 			end.grow(2,2);
 			end.draw();
