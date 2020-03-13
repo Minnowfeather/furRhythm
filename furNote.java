@@ -4,11 +4,7 @@ public class furNote
 	
 	private Rectangle hitbox;
 	
-	public furNote(int x, furCatcher f){
-		hitbox = new Rectangle(x, -20, f.defaultWidth, 20);
-		hitbox.draw();
-	}
-	public furNote(String catcher, furCatcher f){
+	public furNote(int catcher, furCatcher f){
 		hitbox = new Rectangle(f.catcherX(catcher), -20, f.defaultWidth, 20);
 		hitbox.draw();
 	}

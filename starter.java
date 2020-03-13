@@ -45,8 +45,19 @@ public class starter implements InputControl, InputKeyControl
 				for(int i = 0; i < currentNotes.size(); i++){
 					currentNotes.get(i).move(0, 2);
 				}
+				for(int i = 0; i < currentNotes.size(); i++){
+					for(int j = 0; j < keys.length; j++){
+						if(f.contains(j, currentNotes.get(i)) && f.isActivated(j)){
+							f.deactivate(j);
+							currentNotes.get(i).destroy();
+							furNote n = currentNotes.remove(i);
+							n = null;
+							scoreCounter++;
+						}
+					}
+				}
 				if(timeCounter%rate == 0){
-					currentNotes.add(new furNote(keys[(int)(Math.random()*keys.length)], f));
+					currentNotes.add(new furNote((int)(Math.random()*keys.length), f));
 				}
 				Canvas.pause(speed);
 				scoreCounterText.setText(""+scoreCounter);
@@ -96,28 +107,37 @@ public class starter implements InputControl, InputKeyControl
 	
 		}
 		public void keyPress(String s)
-		{
-			// temp holds the enter character
-			
-			for(String key:keys){
-				if(s.equals(key)){
-					f.highlight(key);
-					for(int i = 0; i < currentNotes.size(); i++){
-						if(f.contains(key, currentNotes.get(i))){
-							currentNotes.get(i).destroy();
-							furNote n = currentNotes.remove(i);
-							n = null;
-							scoreCounter++;
-						}
-					}
+		{			
+			for(int j =0; j < keys.length; j++){
+				if(s.equals(keys[j])){
+					f.highlight(j);
+					f.activate(j);
 				}
 			}
-					
-			char done = (char)10;
-			String temp = Character.toString(done);
+			
+
+			char enterTemp = (char)10;
+			String enterKey = Character.toString(enterTemp);
 		}
 		
 		public void keyRelease(String s){
-			f.unHighlight(s);
+			for(int i = 0; i < keys.length; i++){
+				if(s.equals(keys[i])){
+					f.unHighlight(i);
+					f.deactivate(i);
+				}
+			}
 		}
 }
+
+
+/*
+for(int i = 0; i < currentNotes.size(); i++){
+	if(f.contains(j, currentNotes.get(i))){
+		currentNotes.get(i).destroy();
+		furNote n = currentNotes.remove(i);
+		n = null;
+		scoreCounter++;
+	}
+}
+*/
