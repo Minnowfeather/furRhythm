@@ -39,12 +39,18 @@ public class starter implements InputControl, InputKeyControl
 
 			int timeCounter = 0;
 			
-			// update loop
+			/////////////////////// update loop /////////////////////////////////////////////////////////////////////
 			while(gameRunning){
+
+				// keep track of time
 				timeCounter += 1;
+
+				// move notes down
 				for(int i = 0; i < currentNotes.size(); i++){
 					currentNotes.get(i).move(0, 2);
 				}
+
+				//check for note hit
 				for(int i = 0; i < currentNotes.size(); i++){
 					for(int j = 0; j < keys.length; j++){
 						if(f.contains(j, currentNotes.get(i)) && f.isActivated(j)){
@@ -56,26 +62,37 @@ public class starter implements InputControl, InputKeyControl
 						}
 					}
 				}
+
+				//Spawn notes randomly
 				if(timeCounter%rate == 0){
 					currentNotes.add(new furNote((int)(Math.random()*keys.length), f));
 				}
-				Canvas.pause(speed);
+				
+				// update GUI
 				scoreCounterText.setText(""+scoreCounter);
+				healthBar.updateBar();
+
+				// check for offscreen notes
 				for(int i = 0; i < currentNotes.size(); i++){
 					if(currentNotes.get(i).isOutOfBounds()){
 						currentNotes.get(i).destroy();
 						furNote n = currentNotes.remove(i);
 						n = null;
 						scoreCounter--;
-						healthBar.setPercent(healthBar.getPercent()-2);
+						healthBar.setPercent(healthBar.getPercent()-5);
 					}
 				}
-				healthBar.updateBar();
+				
+				// death condition
 				if(healthBar.getPercent() <= 0){
 					gameRunning = false;
 				}
 				
+				// delay before next frame
+				Canvas.pause(speed);
 			}
+			//////////////////////////////////////////////////////////////////////////////////////
+
 			Rectangle clear = new Rectangle(0,0,600,600);
 			clear.setColor(Color.WHITE);
 			clear.fill();
@@ -97,13 +114,13 @@ public class starter implements InputControl, InputKeyControl
 			scoreCounterText = null;
 			*/
 
-			Text end = new Text(250,270,"You died!");
-			end.grow(2,2);
+			Text end = new Text(300,300,"You died!");
+			end.grow(100,20);
+			end.translate(-end.getWidth()/2, -end.getHeight()/2);
 			end.draw();
 		}
 		
 		public void onMouseClick(double x, double y){
-			// and/or here
 	
 		}
 		public void keyPress(String s)
@@ -130,14 +147,4 @@ public class starter implements InputControl, InputKeyControl
 		}
 }
 
-
-/*
-for(int i = 0; i < currentNotes.size(); i++){
-	if(f.contains(j, currentNotes.get(i))){
-		currentNotes.get(i).destroy();
-		furNote n = currentNotes.remove(i);
-		n = null;
-		scoreCounter++;
-	}
-}
-*/
+// ToDO: create options or be able to set controls upon each boot up
