@@ -70,10 +70,15 @@ public class furRhythm implements InputControl, InputKeyControl
 	public void gameInit()
 	{
 		clearScreen();
+		// Text penis = new Text(300,300,"penis");
+		// penis.draw();
 		
-		EasyReader rateReader = new EasyReader("rates.txt");
-		int speed = rateReader.readInt();
-		int rate = rateReader.readInt();
+		// EasyReader rateReader = new EasyReader("rates.txt");
+		// int speed = rateReader.readInt();
+		// int rate = rateReader.readInt();
+		
+		int speed = 3;
+		int rate = 40;
 		
 		gameRunning = true;
 
@@ -91,7 +96,7 @@ public class furRhythm implements InputControl, InputKeyControl
 
 		timeCounter = 0;
 		
-		gameThings.add(rateReader);
+		// gameThings.add(rateReader);
 		gameThings.add(f);
 		gameThings.add(healthBar);
 		gameThings.add(scoreCounterText);
