@@ -1,31 +1,28 @@
 import pkg.*;
-public class furNote
+public abstract class furNote
 {
 	
-	private Rectangle hitbox;
+	public abstract void move(double dx, double dy);
+	public abstract void moveTo(double x, double y);
+
+	public abstract Rectangle getHitbox();
 	
-	public furNote(int catcher, furCatcher f){
-		hitbox = new Rectangle(f.catcherX(catcher), -20, f.defaultWidth, 20);
-		hitbox.draw();
-	}
+	public abstract void destroy();
 	
-	public void move(double dx, double dy){
-		hitbox.translate(dx, dy);
-	}
-	public void moveTo(double x, double y){
-		hitbox.translate(x-hitbox.getX(), y-hitbox.getY());
-	}
-	public Rectangle getHitbox(){
-		return hitbox;
-	}
-	public void destroy(){
-		move(600,600);
-	}
-	public boolean isOutOfBounds(){
-		if(hitbox.getY() > 600){
-			return true;
-		}
-		return false;
-	}
+	public abstract boolean isOutOfBounds();
+	public abstract boolean isAboveBounds();
+	
+	public abstract int getLane();
+	public abstract int getY();
+	
+	
+	public abstract void lock();
+	public abstract void unlock();
+	public abstract boolean isActivatable();
+	public abstract boolean isActivated();
+	public abstract void activate();
+	public abstract void deactivate();
+	public abstract int getLength();
+	
 	
 }

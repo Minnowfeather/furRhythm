@@ -114,19 +114,66 @@ public class furRhythm implements InputControl, InputKeyControl
 			//check for note hit
 			for(int i = 0; i < currentNotes.size(); i++){
 				for(int j = 0; j < keys.length; j++){
-					if(f.contains(j, currentNotes.get(i)) && f.isActivated(j)){
+					
+					// Handle tap notes
+					if(f.contains(j, currentNotes.get(i)) && f.isActivated(j) && (currentNotes.get(i) instanceof furNoteTap)){
 						f.deactivate(j);
 						currentNotes.get(i).destroy();
 						furNote n = currentNotes.remove(i);
 						n = null;
 						scoreCounter++;
 					}
+					
+					// Handle holds
+					// Check type
+					if(currentNotes.get(i) instanceof furNoteHold){
+						
+						// If holding the key and catcher contains thing
+						if(f.isActivated(currentNotes.get(i).getLane()) && f.contains(j, currentNotes.get(i))){
+							if(currentNotes.get(i).isActivated()){
+								// do nothing
+							} else {
+								currentNotes.get(i).activate();
+							}
+						} else if(currentNotes.get(i).isActivated() && !f.isActivated(currentNotes.get(i).getLane())){
+							currentNotes.get(i).deactivate();
+							currentNotes.get(i).lock();
+						// else if the top of the note is inside the hitzone AND the note is activated
+						} else if((currentNotes.get(i).getY() >= 450) && (currentNotes.get(i).isActivated())){
+							// remove note
+							f.deactivate(currentNotes.get(i).getLane());
+							currentNotes.get(i).destroy();
+							furNote n = currentNotes.remove(i);
+							n = null;
+							scoreCounter++;
+						} else if(((currentNotes.get(i).getY()+currentNotes.get(i).getLength()) > 550) && (!currentNotes.get(i).isActivated())){
+							currentNotes.get(i).lock();
+						}
+					}
 				}
 			}
 
 			//Spawn notes randomly
 			if(timeCounter%rate == 0){
-				currentNotes.add(new furNote((int)(Math.random()*keys.length), f));
+				int position = (int)(Math.random()*keys.length);
+				boolean reroll = true;
+				while(reroll){
+					reroll = false;
+					for(int i = 0; i < currentNotes.size(); i++){
+						if(currentNotes.get(i) instanceof furNoteHold){
+							if((currentNotes.get(i).getLane() == position) && currentNotes.get(i).isAboveBounds()){
+								position = (int)(Math.random()*keys.length);
+								reroll = true;
+							}
+						}
+					}
+				}
+				int rand = (int)(Math.random()*2);
+				if(rand == 1){
+					currentNotes.add(new furNoteHold(position, f, 200));
+				} else {
+					currentNotes.add(new furNoteTap(position, f));
+				}
 			}
 			
 			// update GUI
