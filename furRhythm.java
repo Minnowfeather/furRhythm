@@ -3,8 +3,6 @@ import java.util.*;
 public class furRhythm implements InputControl, InputKeyControl 
 {
 	static ArrayList<Object> gameThings;
-	
-	
 	static String[] keys;
 	static furCatcher f;
 	static furHealthBar healthBar;
@@ -70,13 +68,6 @@ public class furRhythm implements InputControl, InputKeyControl
 	public void gameInit()
 	{
 		clearScreen();
-		// Text penis = new Text(300,300,"penis");
-		// penis.draw();
-		
-		// EasyReader rateReader = new EasyReader("rates.txt");
-		// int speed = rateReader.readInt();
-		// int rate = rateReader.readInt();
-		
 		
 		gameRunning = true;
 
@@ -247,5 +238,3 @@ public class furRhythm implements InputControl, InputKeyControl
 		}
 	}
 }
-
-// ToDO: create options or be able to set controls upon each boot up
