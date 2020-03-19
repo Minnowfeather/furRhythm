@@ -10,11 +10,11 @@ public class furCatcher
 	
 	public furCatcher(){
 		
-		hitbar = new Rectangle(0, 440, 400, 10);
-		d = new Rectangle(0, 400, defaultWidth, defaultHeight);
-		f = new Rectangle(100, 400, defaultWidth, defaultHeight);
-		j = new Rectangle(200, 400, defaultWidth, defaultHeight);
-		k = new Rectangle(300, 400, defaultWidth, defaultHeight);
+		hitbar = new Rectangle(0, 490, defaultWidth*4, 10);
+		d = new Rectangle(0, 450, defaultWidth, defaultHeight);
+		f = new Rectangle(100, 450, defaultWidth, defaultHeight);
+		j = new Rectangle(200, 450, defaultWidth, defaultHeight);
+		k = new Rectangle(300, 450, defaultWidth, defaultHeight);
 		
 		dActive = false;
 		fActive = false;

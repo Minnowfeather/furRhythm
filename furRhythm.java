@@ -77,12 +77,15 @@ public class furRhythm implements InputControl, InputKeyControl
 		// int speed = rateReader.readInt();
 		// int rate = rateReader.readInt();
 		
-		int speed = 3;
-		int rate = 40;
 		
 		gameRunning = true;
 
-		keys = new String[]{"d", "f", "j", "k"};
+		keys = new String[]{
+			furConstants.d,
+			furConstants.f,
+			furConstants.j,
+			furConstants.k
+		};
 
 		f = new furCatcher();
 
@@ -91,7 +94,8 @@ public class furRhythm implements InputControl, InputKeyControl
 		currentNotes = new ArrayList<furNote>();
 
 		scoreCounter = 0;
-		scoreCounterText = new Text(500,0, ""+scoreCounter);
+		scoreCounterText = new Text(600,0, ""+scoreCounter);
+		scoreCounterText.translate(-scoreCounterText.getWidth(),0);
 		scoreCounterText.draw();
 
 		timeCounter = 0;
@@ -101,7 +105,7 @@ public class furRhythm implements InputControl, InputKeyControl
 		gameThings.add(healthBar);
 		gameThings.add(scoreCounterText);
 		
-		gameLoop(speed, rate);
+		gameLoop(furConstants.speed, furConstants.rate);
 	}
 	
 	public void gameLoop(int speed, int rate)
@@ -136,6 +140,7 @@ public class furRhythm implements InputControl, InputKeyControl
 			
 			// update GUI
 			scoreCounterText.setText(""+scoreCounter);
+			scoreCounterText.translate(-scoreCounterText.getX()+600-scoreCounterText.getWidth(),0);
 			healthBar.updateBar();
 
 			// check for offscreen notes
@@ -144,7 +149,7 @@ public class furRhythm implements InputControl, InputKeyControl
 					currentNotes.get(i).destroy();
 					furNote n = currentNotes.remove(i);
 					n = null;
-					scoreCounter--;
+					scoreCounter = 0;
 					healthBar.setPercent(healthBar.getPercent()-5);
 				}
 			}
