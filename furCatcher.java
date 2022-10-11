@@ -2,8 +2,9 @@ import pkg.*;
 public class furCatcher
 {
 	private Rectangle d, f, j, k;
+private Rectangle d100, f100, j100, k100;
 	private Rectangle hitbar;
-	public final int defaultHeight = 100;
+	public final int defaultHeight = 50;
 	public final int defaultWidth = 100;
 	private boolean dActive, fActive, jActive, kActive;
 
@@ -11,43 +12,75 @@ public class furCatcher
 	public furCatcher(){
 		
 		hitbar = new Rectangle(0, 490, defaultWidth*4, 10);
-		d = new Rectangle(0, 450, defaultWidth, defaultHeight);
-		f = new Rectangle(100, 450, defaultWidth, defaultHeight);
-		j = new Rectangle(200, 450, defaultWidth, defaultHeight);
-		k = new Rectangle(300, 450, defaultWidth, defaultHeight);
-		
+		d = new Rectangle(0, 470, defaultWidth, defaultHeight);
+		f = new Rectangle(100, 470, defaultWidth, defaultHeight);
+		j = new Rectangle(200, 470, defaultWidth, defaultHeight);
+		k = new Rectangle(300, 470, defaultWidth, defaultHeight);
+		d100 = new Rectangle(0, d.getY()-20, defaultWidth, defaultHeight+40);
+		f100 = new Rectangle(100, f.getY()-20, defaultWidth, defaultHeight+40);
+		j100 = new Rectangle(200, j.getY()-20, defaultWidth, defaultHeight+40);
+		k100 = new Rectangle(300, k.getY()-20, defaultWidth, defaultHeight+40);
+		d100.setColor(Color.GRAY);
+		f100.setColor(Color.GRAY);
+		j100.setColor(Color.GRAY);
+		k100.setColor(Color.GRAY);
 		dActive = false;
 		fActive = false;
 		jActive = false;
 		kActive = false;
 
-		hitbar.setColor(Color.RED);
-		hitbar.draw();
+		// d100.draw();
+		// f100.draw();
+		// j100.draw();
+		// k100.draw();
+		
 		d.draw();
 		f.draw();
 		j.draw();
 		k.draw();
+		
+		hitbar.setColor(Color.RED);
+		hitbar.draw();
 	}
 	
-	public boolean contains(int catcher, furNote note){
-		if(catcher == 0){
+	public int contains(int catcher, furNote note){
+		if(catcher == 0)
+		{
 			if(d.contains(note.getHitbox())){
-				return true;
+				return 300;
 			}
-		} else if(catcher == 1){
-			if(f.contains(note.getHitbox())){
-				return true;
-			}
-		} else if(catcher == 2){
-			if(j.contains(note.getHitbox())){
-				return true;
-			}
-		} else if(catcher == 3){
-			if(k.contains(note.getHitbox())){
-				return true;
+			if(d100.contains(note.getHitbox())){
+				return 100;
 			}
 		}
-		return false;
+		else if(catcher == 1)
+		{
+			if(f.contains(note.getHitbox())){
+				return 300;
+			}
+			if(f100.contains(note.getHitbox())){
+				return 100;
+			}
+		}
+		else if(catcher == 2)
+		{
+			if(j.contains(note.getHitbox())){
+				return 300;
+			}
+			if(j100.contains(note.getHitbox())){
+				return 100;
+			}
+		}
+		else if(catcher == 3)
+		{
+			if(k.contains(note.getHitbox())){
+				return 300;
+			}
+			if(k100.contains(note.getHitbox())){
+				return 100;
+			}
+		}
+		return -1;
 	}
 	/*
 	public static int defaultHeight(){

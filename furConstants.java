@@ -6,8 +6,8 @@ public class furConstants
 	*/
 	
 	// Speed/Spawnrate related things
-	public static int speed = 3;
-	public static int rate = 100;
+	public static int speed = 8;
+	public static int rate = 300;
 	
 	// Keybinds
 	public static String d = "d";

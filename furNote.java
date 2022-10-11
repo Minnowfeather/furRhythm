@@ -18,11 +18,13 @@ public abstract class furNote
 	
 	public abstract void lock();
 	public abstract void unlock();
-	public abstract boolean isActivatable();
+	public abstract boolean isLocked();
 	public abstract boolean isActivated();
 	public abstract void activate();
 	public abstract void deactivate();
 	public abstract int getLength();
+	
+	public static int hitValue;
 	
 	
 }
