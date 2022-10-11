@@ -5,7 +5,6 @@ public class furNoteTap extends furNote
 	private int lane;
 	private boolean activated;
 	private boolean activatable;
-	public int hitValue;
 	
 	public furNoteTap(int catcher, furCatcher f){
 		lane = catcher;
@@ -13,7 +12,6 @@ public class furNoteTap extends furNote
 		hitbox.draw();
 		activated = false;
 		activatable = false;
-		hitValue = -1;
 	}
 	
 	public void move(double dx, double dy){
@@ -61,13 +59,16 @@ public class furNoteTap extends furNote
 	public void unlock(){
 		activatable = true;
 	}
-	public boolean isLocked(){
-		return activatable;
+	public boolean isActivatable(){
+		if(activatable){
+			return true;
+		}
+		return false;
 	}
 	public int getY(){
 		return hitbox.getY();
 	}
 	public int getLength(){
-		return hitbox.getHeight();
+		return 20;
 	}
 }
