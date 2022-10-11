@@ -1,0 +1,10 @@
+*
+
+!*.java
+
+!pkg
+
+!.gitignore
+
+!*.txt
+MANIFEST.*
